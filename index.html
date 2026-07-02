@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Score List</title>
+  <title>Salaries</title>
   <meta name="theme-color" content="#040404">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Score List">
+  <meta name="apple-mobile-web-app-title" content="Salaries">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icon-192.png">
@@ -147,6 +147,7 @@
       text-align: left;
       vertical-align: middle;
       word-break: break-word;
+      overflow: hidden;
     }
 
     .table th {
@@ -206,7 +207,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 80px;
+      min-width: 56px;
       padding: 9px 12px;
       border-radius: 999px;
       background: var(--chip);
@@ -274,57 +275,98 @@
 
     @media (max-width: 900px) {
       body {
-        padding: 12px;
+        padding: 8px;
       }
 
       .header {
         align-items: flex-start;
         flex-direction: column;
-        padding: 20px 16px;
+        padding: 16px 12px;
       }
 
       .toolbar {
         width: 100%;
+        gap: 8px;
       }
 
       .action-btn {
         flex: 1 1 auto;
+        font-size: 13px;
+        padding: 9px 10px;
       }
 
-      .table thead {
-        display: none;
+      .toolbar-note {
+        font-size: 12px;
       }
 
-      .table,
-      .table tbody,
-      .table tr,
+      .title {
+        font-size: 22px;
+      }
+
+      .table {
+        table-layout: fixed;
+      }
+
+      .table th,
       .table td {
-        display: block;
-        width: 100%;
+        display: table-cell;
+        width: auto;
+        padding: 10px 6px;
+        font-size: 12px;
+        vertical-align: middle;
+      }
+
+      .table th {
+        font-size: 11px;
       }
 
       .table tr {
-        padding: 14px;
-        border-bottom: 1px solid var(--line);
+        display: table-row;
       }
 
-      .table td {
-        border: 0;
-        padding: 8px 0;
+      .table tbody {
+        display: table-row-group;
       }
 
       .table td::before {
-        content: attr(data-label);
-        display: block;
-        color: var(--muted);
-        font-size: 12px;
-        margin-bottom: 6px;
+        content: none;
+      }
+      
+      .index {
+        width: 28px;
       }
 
-      .copy-btn,
-      .edit-input,
+      .name-cell,
+      .score,
+      .id-cell {
+        font-size: 11px;
+      }
+
+      .copy-btn {
+        font-size: 12px;
+        padding: 7px 8px;
+      }
+
+      .ac-pill {
+        min-width: 42px;
+        padding: 6px 8px;
+        font-size: 11px;
+      }
+
+      .name-wrap {
+        gap: 4px;
+      }
+
+      .check {
+        font-size: 11px;
+      }
+
+      .score input,
+      .id-cell input,
+      .name-cell input,
       .edit-select {
-        width: 100%;
+        font-size: 12px;
+        padding: 8px 8px;
       }
     }
   </style>
@@ -351,14 +393,14 @@
 
   <main class="wrap">
     <header class="header">
-      <h1 class="title">Score List</h1>
+      <h1 class="title">Salaries</h1>
       <div class="toolbar">
         <button class="action-btn" id="toggleEditBtn" type="button">Edit</button>
         <button class="action-btn" id="saveBtn" type="button" hidden>Save</button>
         <button class="action-btn" id="cancelBtn" type="button" hidden>Cancel</button>
         <button class="action-btn install-btn" id="installBtn" type="button" hidden>Install App</button>
         <span class="toolbar-note view-mode-note">Click Edit to update the full page</span>
-        <span class="toolbar-note edit-mode-note">You can edit name, score, id, and ac, then press Save</span>
+        <span class="toolbar-note edit-mode-note">You can edit name, salary, phone, and account, then press Save</span>
       </div>
     </header>
 
@@ -367,123 +409,123 @@
         <tr>
           <th class="index">#</th>
           <th>Name</th>
-          <th>Score</th>
-          <th>ID</th>
-          <th>AC</th>
+          <th>Salary</th>
+          <th>Phone</th>
+          <th>Account</th>
           <th>Copy</th>
         </tr>
       </thead>
       <tbody>
         <tr class="row" data-id="1">
           <td class="index" data-label="#">1</td>
-          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">✓</span><span class="name-value">بهاء</span></span><input class="edit-input name-input" type="text" value="بهاء"></td>
-          <td class="score" data-label="Score"><span class="display-only score-value">40,000.0</span><input class="edit-input score-input" type="text" value="40,000.0"></td>
-          <td class="id-cell" data-label="ID"><span class="display-only id-value empty">-</span><input class="edit-input id-input" type="text" value="-"></td>
-          <td data-label="AC"><span class="ac-pill display-only ac-value empty">-</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN">IPN</option><option value="W">W</option></select></td>
+          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">âœ“</span><span class="name-value">ط¨ظ‡ط§ط،</span></span><input class="edit-input name-input" type="text" value="ط¨ظ‡ط§ط،"></td>
+          <td class="score" data-label="Salary"><span class="display-only score-value">40,000.0</span><input class="edit-input score-input" type="text" value="40,000.0"></td>
+          <td class="id-cell" data-label="Phone"><span class="display-only id-value empty">-</span><input class="edit-input id-input" type="text" value="-"></td>
+          <td data-label="Account"><span class="ac-pill display-only ac-value empty">-</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN">IPN</option><option value="W">W</option></select></td>
           <td data-label="Copy"><button class="copy-btn" type="button">Copy</button></td>
         </tr>
         <tr class="row" data-id="2">
           <td class="index" data-label="#">2</td>
-          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">✓</span><span class="name-value">مريم</span></span><input class="edit-input name-input" type="text" value="مريم"></td>
-          <td class="score" data-label="Score"><span class="display-only score-value">4,000.0</span><input class="edit-input score-input" type="text" value="4,000.0"></td>
-          <td class="id-cell" data-label="ID"><span class="display-only id-value">01225751934</span><input class="edit-input id-input" type="text" value="01225751934"></td>
-          <td data-label="AC"><span class="ac-pill display-only ac-value">IPN</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN" selected>IPN</option><option value="W">W</option></select></td>
+          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">âœ“</span><span class="name-value">ظ…ط±ظٹظ…</span></span><input class="edit-input name-input" type="text" value="ظ…ط±ظٹظ…"></td>
+          <td class="score" data-label="Salary"><span class="display-only score-value">4,000.0</span><input class="edit-input score-input" type="text" value="4,000.0"></td>
+          <td class="id-cell" data-label="Phone"><span class="display-only id-value">01225751934</span><input class="edit-input id-input" type="text" value="01225751934"></td>
+          <td data-label="Account"><span class="ac-pill display-only ac-value">IPN</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN" selected>IPN</option><option value="W">W</option></select></td>
           <td data-label="Copy"><button class="copy-btn" type="button">Copy</button></td>
         </tr>
         <tr class="row" data-id="3">
           <td class="index" data-label="#">3</td>
-          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">✓</span><span class="name-value">جنا</span></span><input class="edit-input name-input" type="text" value="جنا"></td>
-          <td class="score" data-label="Score"><span class="display-only score-value">3,500.0</span><input class="edit-input score-input" type="text" value="3,500.0"></td>
-          <td class="id-cell" data-label="ID"><span class="display-only id-value">01288274346</span><input class="edit-input id-input" type="text" value="01288274346"></td>
-          <td data-label="AC"><span class="ac-pill display-only ac-value">IPN</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN" selected>IPN</option><option value="W">W</option></select></td>
+          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">âœ“</span><span class="name-value">ط¬ظ†ط§</span></span><input class="edit-input name-input" type="text" value="ط¬ظ†ط§"></td>
+          <td class="score" data-label="Salary"><span class="display-only score-value">3,500.0</span><input class="edit-input score-input" type="text" value="3,500.0"></td>
+          <td class="id-cell" data-label="Phone"><span class="display-only id-value">01288274346</span><input class="edit-input id-input" type="text" value="01288274346"></td>
+          <td data-label="Account"><span class="ac-pill display-only ac-value">IPN</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN" selected>IPN</option><option value="W">W</option></select></td>
           <td data-label="Copy"><button class="copy-btn" type="button">Copy</button></td>
         </tr>
         <tr class="row" data-id="4">
           <td class="index" data-label="#">4</td>
-          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">✓</span><span class="name-value">يوسف</span></span><input class="edit-input name-input" type="text" value="يوسف"></td>
-          <td class="score" data-label="Score"><span class="display-only score-value">3,500.0</span><input class="edit-input score-input" type="text" value="3,500.0"></td>
-          <td class="id-cell" data-label="ID"><span class="display-only id-value">01202245368</span><input class="edit-input id-input" type="text" value="01202245368"></td>
-          <td data-label="AC"><span class="ac-pill display-only ac-value">IPN</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN" selected>IPN</option><option value="W">W</option></select></td>
+          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">âœ“</span><span class="name-value">ظٹظˆط³ظپ</span></span><input class="edit-input name-input" type="text" value="ظٹظˆط³ظپ"></td>
+          <td class="score" data-label="Salary"><span class="display-only score-value">3,500.0</span><input class="edit-input score-input" type="text" value="3,500.0"></td>
+          <td class="id-cell" data-label="Phone"><span class="display-only id-value">01202245368</span><input class="edit-input id-input" type="text" value="01202245368"></td>
+          <td data-label="Account"><span class="ac-pill display-only ac-value">IPN</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN" selected>IPN</option><option value="W">W</option></select></td>
           <td data-label="Copy"><button class="copy-btn" type="button">Copy</button></td>
         </tr>
         <tr class="row" data-id="5">
           <td class="index" data-label="#">5</td>
-          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">✓</span><span class="name-value">حبيبة</span></span><input class="edit-input name-input" type="text" value="حبيبة"></td>
-          <td class="score" data-label="Score"><span class="display-only score-value">3,000.0</span><input class="edit-input score-input" type="text" value="3,000.0"></td>
-          <td class="id-cell" data-label="ID"><span class="display-only id-value">01283093231</span><input class="edit-input id-input" type="text" value="01283093231"></td>
-          <td data-label="AC"><span class="ac-pill display-only ac-value">IPN</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN" selected>IPN</option><option value="W">W</option></select></td>
+          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">âœ“</span><span class="name-value">ط­ط¨ظٹط¨ط©</span></span><input class="edit-input name-input" type="text" value="ط­ط¨ظٹط¨ط©"></td>
+          <td class="score" data-label="Salary"><span class="display-only score-value">3,000.0</span><input class="edit-input score-input" type="text" value="3,000.0"></td>
+          <td class="id-cell" data-label="Phone"><span class="display-only id-value">01283093231</span><input class="edit-input id-input" type="text" value="01283093231"></td>
+          <td data-label="Account"><span class="ac-pill display-only ac-value">IPN</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN" selected>IPN</option><option value="W">W</option></select></td>
           <td data-label="Copy"><button class="copy-btn" type="button">Copy</button></td>
         </tr>
         <tr class="row" data-id="6">
           <td class="index" data-label="#">6</td>
-          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">✓</span><span class="name-value">ميار</span></span><input class="edit-input name-input" type="text" value="ميار"></td>
-          <td class="score" data-label="Score"><span class="display-only score-value">3,000.0</span><input class="edit-input score-input" type="text" value="3,000.0"></td>
-          <td class="id-cell" data-label="ID"><span class="display-only id-value">01279979172</span><input class="edit-input id-input" type="text" value="01279979172"></td>
-          <td data-label="AC"><span class="ac-pill display-only ac-value">W</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN">IPN</option><option value="W" selected>W</option></select></td>
+          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">âœ“</span><span class="name-value">ظ…ظٹط§ط±</span></span><input class="edit-input name-input" type="text" value="ظ…ظٹط§ط±"></td>
+          <td class="score" data-label="Salary"><span class="display-only score-value">3,000.0</span><input class="edit-input score-input" type="text" value="3,000.0"></td>
+          <td class="id-cell" data-label="Phone"><span class="display-only id-value">01279979172</span><input class="edit-input id-input" type="text" value="01279979172"></td>
+          <td data-label="Account"><span class="ac-pill display-only ac-value">W</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN">IPN</option><option value="W" selected>W</option></select></td>
           <td data-label="Copy"><button class="copy-btn" type="button">Copy</button></td>
         </tr>
         <tr class="row" data-id="7">
           <td class="index" data-label="#">7</td>
-          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">✓</span><span class="name-value">عبير</span></span><input class="edit-input name-input" type="text" value="عبير"></td>
-          <td class="score" data-label="Score"><span class="display-only score-value">1,400.0</span><input class="edit-input score-input" type="text" value="1,400.0"></td>
-          <td class="id-cell" data-label="ID"><span class="display-only id-value empty">-</span><input class="edit-input id-input" type="text" value="-"></td>
-          <td data-label="AC"><span class="ac-pill display-only ac-value empty">-</span><select class="edit-select ac-input"><option value="-" selected>-</option><option value="IPN">IPN</option><option value="W">W</option></select></td>
+          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">âœ“</span><span class="name-value">ط¹ط¨ظٹط±</span></span><input class="edit-input name-input" type="text" value="ط¹ط¨ظٹط±"></td>
+          <td class="score" data-label="Salary"><span class="display-only score-value">1,400.0</span><input class="edit-input score-input" type="text" value="1,400.0"></td>
+          <td class="id-cell" data-label="Phone"><span class="display-only id-value empty">-</span><input class="edit-input id-input" type="text" value="-"></td>
+          <td data-label="Account"><span class="ac-pill display-only ac-value empty">-</span><select class="edit-select ac-input"><option value="-" selected>-</option><option value="IPN">IPN</option><option value="W">W</option></select></td>
           <td data-label="Copy"><button class="copy-btn" type="button">Copy</button></td>
         </tr>
         <tr class="row" data-id="8">
           <td class="index" data-label="#">8</td>
-          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">✓</span><span class="name-value">أسماء</span></span><input class="edit-input name-input" type="text" value="أسماء"></td>
-          <td class="score" data-label="Score"><span class="display-only score-value">3,000.0</span><input class="edit-input score-input" type="text" value="3,000.0"></td>
-          <td class="id-cell" data-label="ID"><span class="display-only id-value">01277917567</span><input class="edit-input id-input" type="text" value="01277917567"></td>
-          <td data-label="AC"><span class="ac-pill display-only ac-value">IPN</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN" selected>IPN</option><option value="W">W</option></select></td>
+          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">âœ“</span><span class="name-value">ط£ط³ظ…ط§ط،</span></span><input class="edit-input name-input" type="text" value="ط£ط³ظ…ط§ط،"></td>
+          <td class="score" data-label="Salary"><span class="display-only score-value">3,000.0</span><input class="edit-input score-input" type="text" value="3,000.0"></td>
+          <td class="id-cell" data-label="Phone"><span class="display-only id-value">01277917567</span><input class="edit-input id-input" type="text" value="01277917567"></td>
+          <td data-label="Account"><span class="ac-pill display-only ac-value">IPN</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN" selected>IPN</option><option value="W">W</option></select></td>
           <td data-label="Copy"><button class="copy-btn" type="button">Copy</button></td>
         </tr>
         <tr class="row" data-id="9">
           <td class="index" data-label="#">9</td>
-          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">✓</span><span class="name-value">خديجة</span></span><input class="edit-input name-input" type="text" value="خديجة"></td>
-          <td class="score" data-label="Score"><span class="display-only score-value">200.0</span><input class="edit-input score-input" type="text" value="200.0"></td>
-          <td class="id-cell" data-label="ID"><span class="display-only id-value empty">-</span><input class="edit-input id-input" type="text" value="-"></td>
-          <td data-label="AC"><span class="ac-pill display-only ac-value empty">-</span><select class="edit-select ac-input"><option value="-" selected>-</option><option value="IPN">IPN</option><option value="W">W</option></select></td>
+          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">âœ“</span><span class="name-value">ط®ط¯ظٹط¬ط©</span></span><input class="edit-input name-input" type="text" value="ط®ط¯ظٹط¬ط©"></td>
+          <td class="score" data-label="Salary"><span class="display-only score-value">200.0</span><input class="edit-input score-input" type="text" value="200.0"></td>
+          <td class="id-cell" data-label="Phone"><span class="display-only id-value empty">-</span><input class="edit-input id-input" type="text" value="-"></td>
+          <td data-label="Account"><span class="ac-pill display-only ac-value empty">-</span><select class="edit-select ac-input"><option value="-" selected>-</option><option value="IPN">IPN</option><option value="W">W</option></select></td>
           <td data-label="Copy"><button class="copy-btn" type="button">Copy</button></td>
         </tr>
         <tr class="row" data-id="10">
           <td class="index" data-label="#">10</td>
-          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">✓</span><span class="name-value">شهد</span></span><input class="edit-input name-input" type="text" value="شهد"></td>
-          <td class="score" data-label="Score"><span class="display-only score-value">3,000.0</span><input class="edit-input score-input" type="text" value="3,000.0"></td>
-          <td class="id-cell" data-label="ID"><span class="display-only id-value empty">-</span><input class="edit-input id-input" type="text" value="-"></td>
-          <td data-label="AC"><span class="ac-pill display-only ac-value empty">-</span><select class="edit-select ac-input"><option value="-" selected>-</option><option value="IPN">IPN</option><option value="W">W</option></select></td>
+          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">âœ“</span><span class="name-value">ط´ظ‡ط¯</span></span><input class="edit-input name-input" type="text" value="ط´ظ‡ط¯"></td>
+          <td class="score" data-label="Salary"><span class="display-only score-value">3,000.0</span><input class="edit-input score-input" type="text" value="3,000.0"></td>
+          <td class="id-cell" data-label="Phone"><span class="display-only id-value empty">-</span><input class="edit-input id-input" type="text" value="-"></td>
+          <td data-label="Account"><span class="ac-pill display-only ac-value empty">-</span><select class="edit-select ac-input"><option value="-" selected>-</option><option value="IPN">IPN</option><option value="W">W</option></select></td>
           <td data-label="Copy"><button class="copy-btn" type="button">Copy</button></td>
         </tr>
         <tr class="row" data-id="11">
           <td class="index" data-label="#">11</td>
-          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">✓</span><span class="name-value">نادين</span></span><input class="edit-input name-input" type="text" value="نادين"></td>
-          <td class="score" data-label="Score"><span class="display-only score-value">3,000.0</span><input class="edit-input score-input" type="text" value="3,000.0"></td>
-          <td class="id-cell" data-label="ID"><span class="display-only id-value empty">-</span><input class="edit-input id-input" type="text" value="-"></td>
-          <td data-label="AC"><span class="ac-pill display-only ac-value empty">-</span><select class="edit-select ac-input"><option value="-" selected>-</option><option value="IPN">IPN</option><option value="W">W</option></select></td>
+          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">âœ“</span><span class="name-value">ظ†ط§ط¯ظٹظ†</span></span><input class="edit-input name-input" type="text" value="ظ†ط§ط¯ظٹظ†"></td>
+          <td class="score" data-label="Salary"><span class="display-only score-value">3,000.0</span><input class="edit-input score-input" type="text" value="3,000.0"></td>
+          <td class="id-cell" data-label="Phone"><span class="display-only id-value empty">-</span><input class="edit-input id-input" type="text" value="-"></td>
+          <td data-label="Account"><span class="ac-pill display-only ac-value empty">-</span><select class="edit-select ac-input"><option value="-" selected>-</option><option value="IPN">IPN</option><option value="W">W</option></select></td>
           <td data-label="Copy"><button class="copy-btn" type="button">Copy</button></td>
         </tr>
         <tr class="row" data-id="12">
           <td class="index" data-label="#">12</td>
-          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">✓</span><span class="name-value">أشجان</span></span><input class="edit-input name-input" type="text" value="أشجان"></td>
-          <td class="score" data-label="Score"><span class="display-only score-value">3,000.0</span><input class="edit-input score-input" type="text" value="3,000.0"></td>
-          <td class="id-cell" data-label="ID"><span class="display-only id-value empty">-</span><input class="edit-input id-input" type="text" value="-"></td>
-          <td data-label="AC"><span class="ac-pill display-only ac-value empty">-</span><select class="edit-select ac-input"><option value="-" selected>-</option><option value="IPN">IPN</option><option value="W">W</option></select></td>
+          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">âœ“</span><span class="name-value">ط£ط´ط¬ط§ظ†</span></span><input class="edit-input name-input" type="text" value="ط£ط´ط¬ط§ظ†"></td>
+          <td class="score" data-label="Salary"><span class="display-only score-value">3,000.0</span><input class="edit-input score-input" type="text" value="3,000.0"></td>
+          <td class="id-cell" data-label="Phone"><span class="display-only id-value empty">-</span><input class="edit-input id-input" type="text" value="-"></td>
+          <td data-label="Account"><span class="ac-pill display-only ac-value empty">-</span><select class="edit-select ac-input"><option value="-" selected>-</option><option value="IPN">IPN</option><option value="W">W</option></select></td>
           <td data-label="Copy"><button class="copy-btn" type="button">Copy</button></td>
         </tr>
         <tr class="row" data-id="13">
           <td class="index" data-label="#">13</td>
-          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">✓</span><span class="name-value">محمد حمدي</span></span><input class="edit-input name-input" type="text" value="محمد حمدي"></td>
-          <td class="score" data-label="Score"><span class="display-only score-value">5,500.0</span><input class="edit-input score-input" type="text" value="5,500.0"></td>
-          <td class="id-cell" data-label="ID"><span class="display-only id-value">01281991477</span><input class="edit-input id-input" type="text" value="01281991477"></td>
-          <td data-label="AC"><span class="ac-pill display-only ac-value">IPN</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN" selected>IPN</option><option value="W">W</option></select></td>
+          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">âœ“</span><span class="name-value">ظ…ط­ظ…ط¯ ط­ظ…ط¯ظٹ</span></span><input class="edit-input name-input" type="text" value="ظ…ط­ظ…ط¯ ط­ظ…ط¯ظٹ"></td>
+          <td class="score" data-label="Salary"><span class="display-only score-value">5,500.0</span><input class="edit-input score-input" type="text" value="5,500.0"></td>
+          <td class="id-cell" data-label="Phone"><span class="display-only id-value">01281991477</span><input class="edit-input id-input" type="text" value="01281991477"></td>
+          <td data-label="Account"><span class="ac-pill display-only ac-value">IPN</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN" selected>IPN</option><option value="W">W</option></select></td>
           <td data-label="Copy"><button class="copy-btn" type="button">Copy</button></td>
         </tr>
         <tr class="row" data-id="14">
           <td class="index" data-label="#">14</td>
-          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">✓</span><span class="name-value">زياد</span></span><input class="edit-input name-input" type="text" value="زياد"></td>
-          <td class="score" data-label="Score"><span class="display-only score-value">4,500.0</span><input class="edit-input score-input" type="text" value="4,500.0"></td>
-          <td class="id-cell" data-label="ID"><span class="display-only id-value">01157015105</span><input class="edit-input id-input" type="text" value="01157015105"></td>
-          <td data-label="AC"><span class="ac-pill display-only ac-value">IPN</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN" selected>IPN</option><option value="W">W</option></select></td>
+          <td class="name-cell" data-label="Name"><span class="name-wrap display-only"><span class="check">âœ“</span><span class="name-value">ط²ظٹط§ط¯</span></span><input class="edit-input name-input" type="text" value="ط²ظٹط§ط¯"></td>
+          <td class="score" data-label="Salary"><span class="display-only score-value">4,500.0</span><input class="edit-input score-input" type="text" value="4,500.0"></td>
+          <td class="id-cell" data-label="Phone"><span class="display-only id-value">01157015105</span><input class="edit-input id-input" type="text" value="01157015105"></td>
+          <td data-label="Account"><span class="ac-pill display-only ac-value">IPN</span><select class="edit-select ac-input"><option value="-">-</option><option value="IPN" selected>IPN</option><option value="W">W</option></select></td>
           <td data-label="Copy"><button class="copy-btn" type="button">Copy</button></td>
         </tr>
       </tbody>
@@ -676,3 +718,4 @@
   </script>
 </body>
 </html>
+
